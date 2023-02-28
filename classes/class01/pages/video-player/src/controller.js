@@ -8,7 +8,8 @@ export default class Controller {
     this.#camera = camera
     this.#worker = this.#configureWorker(worker)
 
-    this.#view.configureOnBtnClick(this.onBtnStart.bind(this))
+    this.btnEventListner = this.#view.configureOnBtnClick(this.onBtnStart.bind(this))
+    this.detection = false;
   }
 
   static async initialize(deps) {
@@ -48,7 +49,7 @@ export default class Controller {
     const img = this.#view.getVideoFrame(video)
     this.#worker.send(img)
     this.log(`detecting eye blink...`)
-    setTimeout(() => this.loop(), 100)
+    setTimeout(() => { if (this.detection) { this.loop() } }, 100)
   }
   log(text) {
     const times = `      - blinked times: ${this.#blinkCounter}`
@@ -56,8 +57,20 @@ export default class Controller {
   }
 
   onBtnStart() {
-    this.log('initializing detection...')
-    this.#blinkCounter = 0
-    this.loop()
+    this.#toogleDetection()
+
+    if (this.detection) {
+      this.log('stop detection!')
+      this.#blinkCounter = 0
+      this.loop()
+      this.#view.changeBtnTxt `Stop Blink Recognition`
+    } else {
+      this.log('initializing detection...')
+      this.#view.changeBtnTxt `Initialize Blink Recognition`
+    }
+  }
+
+  #toogleDetection() {
+    this.detection = !this.detection
   }
 }
