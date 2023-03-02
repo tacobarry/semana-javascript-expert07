@@ -38,8 +38,8 @@ export default class HandGestureController {
     try {
       const hands = await this.#service.estimateHands(this.#camera.video)
       for await(const { event, x, y } of this.#service.detectGestures(hands)) {
+        console.log(event)
         if (event.includes('scroll')) {
-          console.log(event, x, y)
           if (!scrollShouldRun()) continue;
           this.#scrollPage(event)
         }
