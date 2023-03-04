@@ -12,7 +12,7 @@ Marque esse projeto com uma estrela 🌟
 - Este projeto foi criado usando Node.js v19.6
 
 ## Live demo
-- Para testar o projeto final [clique aqui](https://github.com/tacobarry/semana-javascript-expert07/tree/main/classes/class04)
+- Para testar o projeto final [clique aqui](https://tacobarry.github.io/semana-javascript-expert07/tree/main/classes/class04)
 
 ## Running
 
