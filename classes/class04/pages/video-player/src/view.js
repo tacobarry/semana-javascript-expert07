@@ -35,4 +35,8 @@ export default class View {
   changeBtnTxt(text) {
     this.#btnInit.innerText = text
   }
+
+  setVideoSrc(url) {
+    this.#videoElement.src = url
+  }
 }
